@@ -5,11 +5,17 @@ import java.util.List;
 import java.util.ArrayList;
 public class MyArrayList<T> {
     private int size = 0;
-    private static final int defaultSize= 10;
+    private static final int DEFAULT_SIZE= 10;
     private Object elements[];
 
+    public void check(int index)throws IndexOutOfBoundsException{
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
+        }
+    }
+
     public MyArrayList() {
-        elements = new Object[defaultSize];
+        elements = new Object[DEFAULT_SIZE];
     }
     public MyArrayList(int capacity) {
         elements = new Object[capacity];
@@ -20,9 +26,7 @@ public class MyArrayList<T> {
     }
 
     public T get(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
-        }
+        check(index);
         return (T) elements[index];
     }
     private void adjustSize() {
@@ -31,18 +35,15 @@ public class MyArrayList<T> {
     }
 
     public void add(T element) {
-
-        adjustSize();
-
+        if(size==elements.length){
+            adjustSize();
+        }
         elements[size] = element;
-
         size++;
     }
 
     public T remove(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size :" + index);
-        }
+        check(index);
         Object item = elements[index];
         for (int i = index; i < size - 1; i++) {
             elements[i] = elements[i + 1];
@@ -53,13 +54,8 @@ public class MyArrayList<T> {
 
 
     public void clear(){
-          int a = size;
-       for(int i=a-1; i>=0; i--){
-
-           elements[i]=elements[i+1];
-            size--;
-       }
-
+         elements = new Object[DEFAULT_SIZE];
+         size = 0;
     }
 
 }
