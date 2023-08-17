@@ -22,7 +22,7 @@ public class Main {
         intList.remove(23432);
         System.out.println("for list:" + intList.size());
         intList.clear();
-        System.out.println(intList.get(24323));
+        // викидало помилку, бо я перевіряв, чи дійсно видалений список через метод get
 
         MyQueue<Integer> intQueue = new MyQueue<>();
         for (int i = 0; i < 100000; i++) {
@@ -33,7 +33,7 @@ public class Main {
         System.out.println("for queue:" + intQueue.peek());
         System.out.println("for queue:" + intQueue.size());
         intQueue.clear();
-        System.out.println("for queue:" + intQueue.peek());
+
 
         MyStack<Integer> intStack = new MyStack<>();
         for (int i = 0; i < 100000; i++) {
@@ -43,7 +43,7 @@ public class Main {
         System.out.println(intStack.peek());
         System.out.println(intStack.size());
         intStack.clear();
-        System.out.println(intStack.pop());
+
 
         MyHashMap<Integer, String> intMap = new MyHashMap<>();
         for (int i = 0; i < 1000; i++) {
