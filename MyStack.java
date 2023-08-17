@@ -1,12 +1,14 @@
 import java.util.*;
+
 public class MyStack<T> {
     private int size = 0;
-    private static final int defaultSize= 10;
+    private static final int DEFAULT_SIZE = 10;
     private Object elements[];
 
     public MyStack() {
-        elements = new Object[defaultSize];
+        elements = new Object[DEFAULT_SIZE];
     }
+
     public MyStack(int capacity) {
         elements = new Object[capacity];
     }
@@ -14,6 +16,7 @@ public class MyStack<T> {
     public int size() {
         return size;
     }
+
     public T remove(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size :" + index);
@@ -25,14 +28,16 @@ public class MyStack<T> {
         size--;
         return (T) item;
     }
-    public void clear(){
-        for(int i =0; i<size-1;i++){
-            remove(i);
-        }
+
+    public void clear() {
+        size = 0;
+        elements = new Object[DEFAULT_SIZE];
     }
-    public T peek(){
+
+    public T peek() {
         return (T) elements[0];
     }
+
     public T pop() {
 
         Object item = elements[0];
@@ -42,13 +47,17 @@ public class MyStack<T> {
         size--;
         return (T) item;
     }
+
     private void adjustSize() {
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
     }
+
     public void push(T element) {
 
-        adjustSize();
+        if (size == elements.length) {
+            adjustSize();
+        }
 
         elements[size] = element;
 

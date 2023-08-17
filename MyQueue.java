@@ -1,13 +1,15 @@
 import java.util.Arrays;
-import java.util.Collection;
 
-public class MyQueue<T>  {
+
+public class MyQueue<T> {
     private int size = 0;
-    private static final int defaultSize= 10;
+    private static final int DEFAULT_SIZE = 10;
     private Object elements[];
+
     public MyQueue() {
-        elements = new Object[defaultSize];
+        elements = new Object[DEFAULT_SIZE];
     }
+
     public MyQueue(int capacity) {
         elements = new Object[capacity];
     }
@@ -17,15 +19,16 @@ public class MyQueue<T>  {
     }
 
 
-
     private void adjustSize() {
-        int newSize = elements.length * 2;
+        int newSize = elements.length + DEFAULT_SIZE;
         elements = Arrays.copyOf(elements, newSize);
     }
 
     public void add(T element) {
 
-        adjustSize();
+        if (size == elements.length) {
+            adjustSize();
+        }
 
         elements[size] = element;
 
@@ -43,15 +46,14 @@ public class MyQueue<T>  {
         return (T) item;
     }
 
-    public T peek(){
+    public T peek() {
         return (T) elements[0];
     }
 
 
-    public void clear(){
-        for(Object item:elements){
-            poll();
-        }
+    public void clear() {
+        elements = new Object[DEFAULT_SIZE];
+        size = 0;
     }
 
 }

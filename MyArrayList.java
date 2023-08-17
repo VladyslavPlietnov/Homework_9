@@ -1,14 +1,11 @@
-import java.util.AbstractList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ArrayList;
+
 public class MyArrayList<T> {
     private int size = 0;
-    private static final int DEFAULT_SIZE= 10;
+    private static final int DEFAULT_SIZE = 10;
     private Object elements[];
 
-    public void check(int index)throws IndexOutOfBoundsException{
+    public void check(int index) throws IndexOutOfBoundsException {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
         }
@@ -17,6 +14,7 @@ public class MyArrayList<T> {
     public MyArrayList() {
         elements = new Object[DEFAULT_SIZE];
     }
+
     public MyArrayList(int capacity) {
         elements = new Object[capacity];
     }
@@ -29,13 +27,14 @@ public class MyArrayList<T> {
         check(index);
         return (T) elements[index];
     }
+
     private void adjustSize() {
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
     }
 
     public void add(T element) {
-        if(size==elements.length){
+        if (size == elements.length) {
             adjustSize();
         }
         elements[size] = element;
@@ -53,9 +52,9 @@ public class MyArrayList<T> {
     }
 
 
-    public void clear(){
-         elements = new Object[DEFAULT_SIZE];
-         size = 0;
+    public void clear() {
+        elements = new Object[DEFAULT_SIZE];
+        size = 0;
     }
 
 }
